@@ -1,0 +1,13 @@
+<ion-item>
+  <ion-avatar item-start>
+    <img src="../../../../resources/icon.png" height="100" width="100"/>
+  </ion-avatar>
+  <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only>
+    <ion-icon name="play"></ion-icon>
+  </button>
+  <ng-template #playingComp>
+    <button (click)="stop()" ion-button icon-only>
+      <ion-icon name="stop"></ion-icon>
+    </button>
+  </ng-template>
+</ion-item>
