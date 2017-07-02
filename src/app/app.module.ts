@@ -4,14 +4,17 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { MediasProvider } from '../providers/medias';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MediaPlugin } from '@ionic-native/media';
+import { File } from '@ionic-native/file';
 
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage
+    TabsPage,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    MediaPlugin,
+    File,
+    MediasProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
