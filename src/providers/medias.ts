@@ -16,7 +16,7 @@ export class MediasProvider {
   create(name: string) {
     //TODO: generate UUID or get title for filename
     let filename: string = name + '.m4a';
-    this.file = this.media.create(filename, this.onStatusUpdate, this.onSuccess, this.onError);
+    this.file = this.media.create(filename, MediasProvider.onStatusUpdate, MediasProvider.onSuccess, MediasProvider.onError);
   }
 
   startRecord(){
@@ -32,15 +32,15 @@ export class MediasProvider {
     }
   }
 
-  private onStatusUpdate(status){
+  private static onStatusUpdate(status){
     console.log(status);
   }
 
-  private onSuccess() {
+  private static onSuccess() {
     console.log('Action is successful.');
   }
 
-  private onError(error) {
+  private static onError(error) {
     console.error(error.message);
   }
 }
