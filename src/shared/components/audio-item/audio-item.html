@@ -1,13 +1,38 @@
 <ion-item>
-  <ion-avatar item-start>
-    <img src="../../../../resources/icon.png" height="100" width="100"/>
-  </ion-avatar>
-  <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only>
-    <ion-icon name="play"></ion-icon>
-  </button>
-  <ng-template #playingComp>
-    <button (click)="stop()" ion-button icon-only>
-      <ion-icon name="stop"></ion-icon>
-    </button>
-  </ng-template>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1>
+        <ion-avatar item-start>
+          <img src="../../../../resources/icon.png" height="100" width="100"/>
+        </ion-avatar>
+      </ion-col>
+      <ion-col col-2>
+        <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only color="dark" clear>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <ng-template #playingComp>
+          <button (click)="stop()" ion-button icon-only color="dark" clear>
+            <ion-icon name="square"></ion-icon>
+          </button>
+        </ng-template>
+      </ion-col>
+      <ion-col col-6>
+        <h1>{{ fileName }}</h1>
+        <p>Great audio file</p>
+      </ion-col>
+      <ion-col col-1>
+        <p>0:10</p>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button icon-only color="dark" clear>
+          <ion-icon name="download"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-1>
+        <button ion-button icon-only color="dark" clear>
+          <ion-icon name="download"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-item>

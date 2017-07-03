@@ -15,9 +15,16 @@ export class AudioItemComponent {
 
   @Input('item-id') itemId;
 
+  public fileName : string = '';
   private isPlaying: boolean = false;
 
   constructor(private medias: MediasProvider) {
+    //TODO load file from remote
+    this.fileName = 'totofile';
+  }
+
+  load(){
+    this.fileName = 'totofileLoaded.m4a';
   }
 
   play(){
@@ -30,5 +37,9 @@ export class AudioItemComponent {
 
   playing(){
     return this.isPlaying;
+  }
+
+  ionViewDidLoad(){
+    this.fileName = 'totofile.m4a';
   }
 }
