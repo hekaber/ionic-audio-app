@@ -2,7 +2,7 @@
  * Created by hkb on 01.07.17.
  */
 import { Injectable } from '@angular/core';
-import { MediaPlugin, MediaObject} from '@ionic-native/media';
+import {MediaPlugin, MediaObject, MediaStatusUpdateCallback, MediaErrorCallback} from '@ionic-native/media';
 
 @Injectable()
 export class MediasProvider {
@@ -13,10 +13,20 @@ export class MediasProvider {
 
   }
 
-  create(name: string) {
+  create(
+    name: string,
+    onStatusUpdate?: MediaStatusUpdateCallback,
+    onSuccess?: Function,
+    onError?: MediaErrorCallback
+  ) {
     //TODO: generate UUID or get title for filename
     let filename: string = name + '.m4a';
-    this.file = this.media.create(filename, MediasProvider.onStatusUpdate, MediasProvider.onSuccess, MediasProvider.onError);
+    this.file = this.media.create(
+      filename,
+      onStatusUpdate,
+      onSuccess,
+      onError
+    );
   }
 
   startRecord(){
@@ -32,15 +42,8 @@ export class MediasProvider {
     }
   }
 
-  private static onStatusUpdate(status){
-    console.log(status);
+  getFile(): MediaObject{
+    return this.file;
   }
 
-  private static onSuccess() {
-    console.log('Action is successful.');
-  }
-
-  private static onError(error) {
-    console.error(error.message);
-  }
 }
