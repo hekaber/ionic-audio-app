@@ -1,3 +1,12 @@
 audio-item {
 
 }
+
+.audio-info, .audio-info p {
+  color: #ffffff;
+}
+
+.degrade{
+  background:linear-gradient(135deg, rgba(30,136,229,1) 0%,rgba(25,118,210,1)
+  33%,rgba(21,101,192,1) 66%,rgba(21,101,192,1) 66%,rgba(21,101,192,1) 100%,rgba(13,71,161,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

@@ -1,4 +1,4 @@
-<ion-item>
+<ion-item class="degrade">
   <ion-grid>
     <ion-row>
       <ion-col col-1>
@@ -7,21 +7,23 @@
         </ion-avatar>
       </ion-col>
       <ion-col col-2>
-        <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only color="dark" clear>
+        <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only color="light" clear>
           <ion-icon name="play"></ion-icon>
         </button>
         <ng-template #playingComp>
-          <button (click)="stop()" ion-button icon-only color="dark" clear>
+          <button (click)="stop()" ion-button icon-only color="light" clear>
             <ion-icon name="square"></ion-icon>
           </button>
         </ng-template>
       </ion-col>
       <ion-col col-6>
-        <h1>{{ fileName }}</h1>
-        <p>Great audio file</p>
+        <div class="audio-info">
+          <h1>{{ fileName }}</h1>
+          <p>Great audio file</p>
+        </div>
       </ion-col>
       <ion-col col-1>
-        <div *ngIf="playing()===false; else currentDuration;">
+        <div class="audio-info" *ngIf="playing()===false; else currentDuration;">
           <p>{{ totalDuration()}}</p>
         </div>
         <ng-template #currentDuration>
@@ -29,12 +31,12 @@
         </ng-template>
       </ion-col>
       <ion-col col-1>
-        <button ion-button icon-only color="dark" clear>
+        <button ion-button icon-only color="light" clear>
           <ion-icon name="share"></ion-icon>
         </button>
       </ion-col>
       <ion-col col-1>
-        <button ion-button icon-only color="dark" clear>
+        <button ion-button icon-only color="light" clear>
           <ion-icon name="download"></ion-icon>
         </button>
       </ion-col>
