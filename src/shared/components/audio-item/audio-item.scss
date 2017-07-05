@@ -7,6 +7,11 @@ audio-item {
 }
 
 .degrade{
-  background:linear-gradient(135deg, rgba(30,136,229,1) 0%,rgba(25,118,210,1)
-  33%,rgba(21,101,192,1) 66%,rgba(21,101,192,1) 66%,rgba(21,101,192,1) 100%,rgba(13,71,161,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background:linear-gradient(135deg,
+    #000000 0%,
+    #0d47a1 35%,
+    #1565c0 65%,
+    #1976d2 85%,
+    #1e88e5 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
