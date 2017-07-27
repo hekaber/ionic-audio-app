@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AudioRecordProvider} from '../../providers/medias';
+import {MediaObject} from "@ionic-native/media";
 
 /**
  * Generated class for the RecordPage page.
@@ -17,10 +18,11 @@ export class RecordPage {
 
   headerTitle: string = 'Record';
   private isRecording: boolean = false;
+  private file: MediaObject;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private medias: AudioRecordProvider) {
+              private audioRecordProvider: AudioRecordProvider) {
   }
 
   ionViewDidLoad() {
@@ -29,13 +31,13 @@ export class RecordPage {
 
   record(){
     this.isRecording = true;
-    this.medias.create('test_audio_file');
-    this.medias.startRecord();
+    this.audioRecordProvider.create('temporary');
+    this.audioRecordProvider.startRecord();
   }
 
   stopRecord(){
     this.isRecording = false;
-    this.medias.stopRecord();
+    this.audioRecordProvider.stopRecord();
   }
 
   recording(){

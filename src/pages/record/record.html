@@ -12,15 +12,20 @@
 
 
 <ion-content padding>
-  <button *ngIf="recording()===false; else recordingComp;" (click)="record()" ion-button icon-only>
-    <ion-icon name="mic"></ion-icon>
-    Record
-  </button>
-  <ng-template #recordingComp>
-    <button (click)="stopRecord()" ion-button icon-only>
-      <ion-icon name="mic-off"></ion-icon>
-      Stop
-    </button>
-  </ng-template>
+  <ion-grid id="recordGrid">
+    <ion-row>
+      <ion-col col-12>
+        <button id="recBtn" *ngIf="recording()===false; else recordingComp;" (click)="record()" ion-button round icon-only>
+          <ion-icon name="mic"></ion-icon>
+        </button>
+        <ng-template #recordingComp>
+          <button id="stopRecBtn" (click)="stopRecord()" ion-button round icon-only>
+            <ion-icon name="mic-off"></ion-icon>
+          </button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <fabbutton></fabbutton>
 </ion-content>
