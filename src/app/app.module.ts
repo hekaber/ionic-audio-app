@@ -29,7 +29,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
 @NgModule({
   declarations: [
     MyApp,
-    // TabsPage,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +42,6 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // TabsPage
   ],
   providers: [
     StatusBar,
