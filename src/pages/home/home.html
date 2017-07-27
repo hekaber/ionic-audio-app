@@ -6,15 +6,5 @@
   <ion-list>
     <audio-item></audio-item>
   </ion-list>
-  <button *ngIf="recording()===false; else recordingComp;" (click)="record()" ion-button icon-only>
-    <ion-icon name="mic"></ion-icon>
-    Record
-  </button>
-  <ng-template #recordingComp>
-    <button (click)="stopRecord()" ion-button icon-only>
-      <ion-icon name="mic-off"></ion-icon>
-      Stop
-    </button>
-  </ng-template>
   <fabbutton></fabbutton>
 </ion-content>

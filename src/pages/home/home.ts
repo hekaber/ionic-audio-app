@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {AudioRecordProvider} from '../../providers/medias';
 
 @IonicPage()
 @Component({
@@ -10,23 +9,9 @@ import {AudioRecordProvider} from '../../providers/medias';
 export class HomePage {
 
   headerTitle: string = "Home";
-  private isRecording: boolean = false;
 
-  constructor(public navCtrl: NavController, private medias: AudioRecordProvider) {
+  constructor(public navCtrl: NavController) {
   }
+  // TODO: add the functions that will play music from ionic-audio native plugin
 
-  record(){
-    this.isRecording = true;
-    this.medias.create('test_audio_file');
-    this.medias.startRecord();
-  }
-
-  stopRecord(){
-    this.isRecording = false;
-    this.medias.stopRecord();
-  }
-
-  recording(){
-    return this.isRecording;
-  }
 }
