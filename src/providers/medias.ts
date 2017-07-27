@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import {MediaPlugin, MediaObject, MediaStatusUpdateCallback, MediaErrorCallback} from '@ionic-native/media';
 
 @Injectable()
-export class MediasProvider {
+export class AudioRecordProvider {
 
   private file: MediaObject;
 

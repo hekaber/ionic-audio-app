@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import {MediasProvider} from '../../../providers/medias';
+import {AudioRecordProvider} from '../../../providers/medias';
 import {MediaObject, MediaPlugin} from "@ionic-native/media";
 
 /**
@@ -22,7 +22,7 @@ export class AudioItemComponent {
   private _file: MediaObject;
   private _timer: any;
 
-  constructor(private medias: MediasProvider) {
+  constructor(private medias: AudioRecordProvider) {
     //TODO load file from remote
     this.fileName = 'totofile';
     this.medias.create(

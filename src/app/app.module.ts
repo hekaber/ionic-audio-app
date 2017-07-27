@@ -7,7 +7,7 @@ import { JwtHelper, AuthConfig, AuthHttp } from "angular2-jwt";
 import { Http, HttpModule, RequestOptions } from "@angular/http";
 import { Storage, IonicStorageModule} from "@ionic/storage";
 
-import { MediasProvider } from '../providers/medias';
+import { AudioRecordProvider } from '../providers/medias';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -51,7 +51,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
     EndpointsProvider,
     MediaPlugin,
     File,
-    MediasProvider,
+    AudioRecordProvider,
     JwtHelper,
     {
       provide: AuthHttp,

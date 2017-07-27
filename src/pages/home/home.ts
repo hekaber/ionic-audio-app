@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
-import {MediasProvider} from '../../providers/medias';
+import {AudioRecordProvider} from '../../providers/medias';
 
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
 })
 export class HomePage {
 
+  headerTitle: string = "Home";
   private isRecording: boolean = false;
 
-  constructor(public navCtrl: NavController, private medias: MediasProvider) {
+  constructor(public navCtrl: NavController, private medias: AudioRecordProvider) {
   }
 
   record(){

@@ -12,7 +12,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointsProvider {
 
-  API_PATH: string = "http://localhost:3000";
+  // API_PATH: string = "http://192.168.3.50:3000";
+  API_PATH: string = "http://192.168.0.115:3000";
 
   getAuth(){
     return this.API_PATH + "/api/user/authenticate";
