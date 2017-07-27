@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthProvider } from "../providers/auth";
-// import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +24,7 @@ export class MyApp {
 
     this.auth.user$.subscribe(user => {
       if (user) {
-        this.rootPage = 'TabsPage';
+        this.rootPage = 'HomePage';
       }
       else {
         this.rootPage = 'LoginPage';
