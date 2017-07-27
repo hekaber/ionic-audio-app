@@ -1,15 +1,28 @@
 import { Component } from '@angular/core';
+import {IonicPage, NavController} from "ionic-angular";
+import { AuthProvider } from '../../providers/auth';
+import { Observable } from "rxjs";
 
+import { User } from '../../models/user';
+
+@IonicPage()
 @Component({
-  templateUrl: 'tabs.html'
+  selector: 'page-tabs',
+  templateUrl: 'tabs.html',
 })
 export class TabsPage {
 
-  tab1Root = 'HomePage';
-  tab2Root = 'AboutPage';
-  tab3Root = 'ContactPage';
+  tab1Root: string = 'HomePage';
+  tab2Root: string = 'AboutPage';
+  tab3Root: string = 'ContactPage';
 
-  constructor() {
+  user$: Observable<User>;
+  constructor(public navCtrl: NavController,
+              private auth: AuthProvider) {
+    this.user$ = this.auth.user$;
+  }
 
+  logout() {
+    this.auth.logout();
   }
 }

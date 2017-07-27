@@ -15,7 +15,7 @@ import {MediaObject, MediaPlugin} from "@ionic-native/media";
 export class AudioItemComponent {
 
   @Input('item-id') itemId;
-
+  auPage = 'AudioPage';
   public fileName : string = '';
   public currentDur: number = 0;
   private _isPlaying: boolean = false;
@@ -76,6 +76,10 @@ export class AudioItemComponent {
 
   playing(){
     return this._isPlaying;
+  }
+
+  getDetails(){
+
   }
 
   ionViewDidLoad(){

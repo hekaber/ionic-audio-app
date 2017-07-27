@@ -1,0 +1,23 @@
+<!-- Generated template for the PlayerComponent component -->
+<div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>
+        <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only color="light" clear>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <ng-template #playingComp>
+          <button (click)="stop()" ion-button icon-only color="light" clear>
+            <ion-icon name="square"></ion-icon>
+          </button>
+        </ng-template>
+      </ion-col>
+      <ion-col col-6>
+
+      </ion-col>
+      <ion-col col-3>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
