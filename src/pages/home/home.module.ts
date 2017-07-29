@@ -17,7 +17,10 @@ import {FabbuttonComponentModule} from "../../shared/components/fabbutton/fabbut
     IonicPageModule.forChild(HomePage),
     AudioItemComponentModule,
     HeaderComponentModule,
-    FabbuttonComponentModule
+    FabbuttonComponentModule,
+
+  ],
+  providers: [
   ],
   exports: [
     HomePage

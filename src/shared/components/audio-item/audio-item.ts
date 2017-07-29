@@ -1,6 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
-import {AudioRecordProvider} from '../../../providers/medias';
+import {AudioRecordProvider} from '../../../providers/audiorecord';
 import {MediaObject, MediaPlugin} from "@ionic-native/media";
+import { AudioProvider } from 'ionic-audio';
 
 /**
  * Generated class for the AudioItemComponent component.
@@ -14,17 +15,16 @@ import {MediaObject, MediaPlugin} from "@ionic-native/media";
 })
 export class AudioItemComponent {
 
-  @Input('item-id') itemId;
+  @Input('media_data') media;
   auPage = 'AudioPage';
-  public fileName : string = '';
   public currentDur: number = 0;
   private _isPlaying: boolean = false;
   private _file: MediaObject;
   private _timer: any;
 
-  constructor(private medias: AudioRecordProvider) {
+  constructor(private medias: AudioRecordProvider,
+              private _audioProvider: AudioProvider) {
     //TODO load file from remote
-    this.fileName = 'totofile';
     this.medias.create(
       'test_audio_file',
       this.onStatusUpdate,
@@ -34,9 +34,9 @@ export class AudioItemComponent {
     this._file = this.medias.getFile();
   }
 
-  load(){
-    this.fileName = 'totofileLoaded.m4a';
-  }
+  // load(){
+  //   this.fileName = 'totofileLoaded.m4a';
+  // }
 
   play(){
     this._isPlaying = true;
@@ -82,9 +82,8 @@ export class AudioItemComponent {
 
   }
 
-  ionViewDidLoad(){
-    this.fileName = 'totofile.m4a';
-  }
+  // ionViewDidLoad(){
+  // }
 
   private onStatusUpdate(status){
     console.log(status);

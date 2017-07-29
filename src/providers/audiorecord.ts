@@ -42,6 +42,31 @@ export class AudioRecordProvider {
     }
   }
 
+  play(){
+    if(this.file){
+      this.file.play();
+    }
+  }
+
+  pause(){
+    if(this.file){
+      this.file.pause();
+    }
+  }
+
+  stop(){
+    if(this.file){
+      this.file.stop();
+      this.file.release();
+    }
+  }
+
+  seekTo(time: number){
+      if (this.file){
+        this.file.seekTo(time);
+      }
+  }
+
   getFile(): MediaObject{
     return this.file;
   }

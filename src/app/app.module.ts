@@ -7,7 +7,7 @@ import { JwtHelper, AuthConfig, AuthHttp } from "angular2-jwt";
 import { Http, HttpModule, RequestOptions } from "@angular/http";
 import { Storage, IonicStorageModule} from "@ionic/storage";
 
-import { AudioRecordProvider } from '../providers/medias';
+import { AudioRecordProvider } from '../providers/audiorecord';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +15,20 @@ import { MediaPlugin } from '@ionic-native/media';
 import { File } from '@ionic-native/file';
 import {AuthProvider} from "../providers/auth";
 import {EndpointsProvider} from "../providers/endpoints";
+import {MediaProvider} from "../providers/media";
+
+
+import {
+  IonicAudioModule, AudioProvider, WebAudioProvider, defaultAudioProviderFactory,
+  CordovaMediaProvider
+} from 'ionic-audio';
+
+/**
+ * Sample custom factory function to use with ionic-audio
+ */
+export function myCustomAudioProviderFactory() {
+  return (window.hasOwnProperty('cordova')) ? new CordovaMediaProvider() : new WebAudioProvider();
+}
 
 // Auth Factory
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
@@ -38,6 +52,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
       name: 'ionic-audio-app',
       driverOrder: ['localstorage']
     }),
+    IonicAudioModule.forRoot(defaultAudioProviderFactory),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,6 +64,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     EndpointsProvider,
+    MediaProvider,
     MediaPlugin,
     File,
     AudioRecordProvider,

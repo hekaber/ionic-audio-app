@@ -4,7 +4,9 @@
 
 <ion-content padding>
   <ion-list>
-    <audio-item></audio-item>
+    <ion-item class="degrade" [navPush]="audioPage" *ngFor="let media of (medias$ | async); ">
+      <audio-item [media_data]="media"></audio-item>
+    </ion-item>
   </ion-list>
   <fabbutton></fabbutton>
 </ion-content>
