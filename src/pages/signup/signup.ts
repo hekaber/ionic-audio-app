@@ -1,38 +1,28 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, ToastController, ModalController } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, ToastController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth';
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations'
 
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the SignupPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-signup',
+  templateUrl: 'signup.html',
   animations: [
-    //For the logo
-    trigger('flyInBottomSlow', [
-      state('in', style({
-        transform: 'translate3d(0,0,0)'
-      })),
-      transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0'}),
-        animate('2000ms ease-in-out')
-      ])
-    ]),
     //For the login form
     trigger('bounceInBottom', [
       state('in', style({
         transform: 'translate3d(0,0,0)'
       })),
       transition('void => *', [
-        animate('2000ms 200ms ease-in', keyframes([
-          style({transform: 'translate3d(0,2000px,0)', offset: 0}),
-          style({transform: 'translate3d(0,-20px,0)', offset: 0.9}),
+        animate('1000ms 200ms ease-in', keyframes([
+          style({transform: 'translate3d(-2000px,0,0)', offset: 0}),
+          style({transform: 'translate3d(5px,0,0)', offset: 0.9}),
           style({transform: 'translate3d(0,0,0)', offset: 1})
         ]))
       ])
@@ -49,43 +39,39 @@ import {trigger, state, style, transition, animate, keyframes} from '@angular/an
     ]),
   ],
 })
-export class LoginPage {
+export class SignupPage {
 
-  logoState: any = "in";
-  loginState: any = "in";
-  signupState: any = "in";
+  registerCredentials = { email: '', psw: '' };
+  confirm: string = "";
   formState: any = "in";
-
-  email:string;
-  password:string;
-  error:string;
+  signupState: any = "in";
 
   constructor(public readonly navCtrl: NavController,
-              private readonly auth:AuthProvider,
-              private readonly modalCtrl: ModalController,
+              private readonly auth: AuthProvider,
               private readonly loadingCtrl: LoadingController,
               private readonly toastCtrl: ToastController) {
   }
 
-  openSignup(){
-    let modal = this.modalCtrl.create('SignupPage');
-    modal.present();
-  }
-
-  login() {
+  signup(){
     let loading = this.loadingCtrl.create({
       spinner: 'bubbles',
-      content: 'Logging in ...'
+      content: 'Registering ...'
     });
 
     loading.present();
 
-    this.auth
-      .login({email:this.email, psw:this.password })
-      .finally(() => loading.dismiss())
-      .subscribe(
-        () => {},
-        err => this.handleError(err));
+    if(this.registerCredentials.psw != this.confirm){
+      this.handleError("Password does match with confirmation.")
+    }
+    else{
+      console.log(this.registerCredentials);
+      this.auth
+        .signup(this.registerCredentials)
+        .finally(() => loading.dismiss())
+        .subscribe(
+          () => {},
+          err => this.handleError(err));
+    }
   }
 
   handleError(error: any) {
