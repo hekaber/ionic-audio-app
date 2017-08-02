@@ -27,7 +27,7 @@ page-record  {
     flex-wrap: wrap;
   }
 
-  #recordGrid ion-row {
+  #recordGrid ion-row:first-child {
     height: 30%;
   }
 
