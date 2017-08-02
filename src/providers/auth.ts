@@ -43,13 +43,16 @@ export class AuthProvider {
 
   login(values: any): Observable<any> {
     return this.http.post(this.endpoints.getLogin(), values)
-      .map(response => response.text())
-      .map(jwt => this.handleJwtResponse(jwt))
+      .map(response => {
+        console.log(response.text());
+        return response.text()
+      })
+      .map(resp => this.handleResponse(resp))
       .catch(err => Observable.throw(this.handleErrors(err)));
   }
 
   logout() {
-    this.storage.remove('jwt').then(() => this.authUser.next(null));
+    this.storage.remove('login_response').then(() => this.authUser.next(null));
   }
 
   signup(values: any): Observable<any> {
@@ -67,7 +70,16 @@ export class AuthProvider {
     return err;
   }
 
+  private handleResponse(response: string) {
+    console.log('handling: ' + response);
+    let responseObj = JSON.parse(response);
+    return this.storage.set('login_response', response)
+      .then(() =>  this.authUser.next(this.jwtHelper.decodeToken(responseObj.token)))
+      .then(() => responseObj.token);
+  }
+
   private handleJwtResponse(jwt: string) {
+    console.log(jwt);
     return this.storage.set('jwt', jwt)
       .then(() =>  this.authUser.next(this.jwtHelper.decodeToken(jwt)))
       .then(() => jwt);

@@ -24,7 +24,7 @@ export class HomePage {
               private readonly auth:AuthProvider,
               private mediaProvider: MediaProvider) {
     this.medias$ = mediaProvider.media$;
-    this.mediaProvider.getMedias(10);
+    this.mediaProvider.getMediasForUser(10);
   }
 
   logout(){

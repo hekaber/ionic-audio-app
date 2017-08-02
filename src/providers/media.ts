@@ -29,9 +29,9 @@ export class MediaProvider {
   }
 
   getMedias(limit: number){
-    this.storage.get('jwt').then(jwt => {
-      let tokenObj = JSON.parse(jwt);
-      console.log('The token: ' + tokenObj.token);
+    this.storage.get('login_response').then(resp => {
+      let tokenObj = JSON.parse(resp);
+      // console.log('The token: ' + tokenObj.token);
 
       let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
       let options: RequestOptions = new RequestOptions({headers: headers});
@@ -53,6 +53,31 @@ export class MediaProvider {
           error => {console.log(error)}
         );
     });
+  }
 
+  getMediasForUser(limit: number){
+    this.storage.get('login_response').then(resp => {
+      let tokenObj = JSON.parse(resp);
+
+      let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
+      let options: RequestOptions = new RequestOptions({headers: headers});
+      this.http.get(this.endpoints.getMediasForUser(tokenObj.userId), options)
+        .map(response => response.json())
+        .subscribe(
+          data => {
+            // add new datas to store.medias
+            this._dataStore.medias = data.filter((media, index)=>{
+
+              if(index<= limit){
+                return media
+              }
+
+            });
+            // assign new state to observable Medias Subject
+            this._medias.next(Object.assign({}, this._dataStore).medias);
+          },
+          error => {console.log(error)}
+        );
+    });
   }
 }
