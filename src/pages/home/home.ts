@@ -5,6 +5,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Observable} from "rxjs/Observable";
 
 import {Media} from "../../models/media";
+import {AuthProvider} from "../../providers/auth";
 
 
 @IonicPage()
@@ -20,9 +21,14 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController,
+              private readonly auth:AuthProvider,
               private mediaProvider: MediaProvider) {
     this.medias$ = mediaProvider.media$;
     this.mediaProvider.getMedias();
+  }
+
+  logout(){
+    this.auth.logout();
   }
 
   // listMedias(){
