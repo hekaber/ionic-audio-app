@@ -23,4 +23,8 @@ export class FabbuttonComponent {
   getNewImagePage(){
     this.navCtrl.push('NewImagePage');
   }
+
+  getCommunityPage(){
+    this.navCtrl.push('CommunityPage');
+  }
 }
