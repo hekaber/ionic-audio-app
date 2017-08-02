@@ -28,6 +28,27 @@ export class MediaProvider {
 
   }
 
+  create(mediaData){
+    // Data format to post
+    // {
+    //   "name": body.name,
+    //   "type": body.type,
+    //   "uid": body.uid,
+    //   "uploaded": body.uploaded,
+    //   "shared": body.shared,
+    //   "tags": body.tags
+    // }
+    this.storage.get('login_response').then(resp => {
+      let tokenObj = JSON.parse(resp);
+      // console.log('The token: ' + tokenObj.token);
+
+      let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
+      let options: RequestOptions = new RequestOptions({headers: headers});
+      this.http.post(this.endpoints.getMedias(), options)
+        .map(response => response.json());
+    });
+  }
+
   getMedias(limit: number){
     this.storage.get('login_response').then(resp => {
       let tokenObj = JSON.parse(resp);
@@ -58,7 +79,7 @@ export class MediaProvider {
   getMediasForUser(limit: number){
     this.storage.get('login_response').then(resp => {
       let tokenObj = JSON.parse(resp);
-
+      console.log('Token : ' + tokenObj.token);
       let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
       let options: RequestOptions = new RequestOptions({headers: headers});
       this.http.get(this.endpoints.getMediasForUser(tokenObj.userId), options)

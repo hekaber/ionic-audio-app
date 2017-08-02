@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AudioRecordProvider} from '../../providers/audiorecord';
 import {MediaObject} from "@ionic-native/media";
 import {AuthProvider} from "../../providers/auth";
+import {TagProvider} from "../../providers/tag";
+import {Observable} from "rxjs/Observable";
+import {Tag} from "../../models/tag";
 
 /**
  * Generated class for the RecordPage page.
@@ -25,10 +28,17 @@ export class RecordPage {
 
   private file: MediaObject;
 
+  public tags$: Observable<Tag[]>;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private readonly auth: AuthProvider,
-              private readonly audioRecordProvider: AudioRecordProvider) {
+              private readonly audioRecordProvider: AudioRecordProvider,
+              private readonly tagProvider: TagProvider) {
+
+    this.tags$ = tagProvider.tag$;
+    this.tagProvider.getTags();
+    console.log(this.tags$);
   }
 
   ionViewDidLoad() {
