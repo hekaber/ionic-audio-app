@@ -1,8 +1,10 @@
 <ion-header>
-  <app-header [title]='headerTitle'></app-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-list>
     <ion-item class="degrade" [navPush]="audioPage" *ngFor="let media of (medias$ | async); ">
       <audio-item [media_data]="media"></audio-item>
