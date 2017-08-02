@@ -17,6 +17,7 @@ import { File } from '@ionic-native/file';
 import {AuthProvider} from "../providers/auth";
 import {EndpointsProvider} from "../providers/endpoints";
 import {MediaProvider} from "../providers/media";
+import {TagProvider} from "../providers/tag";
 
 
 import {
@@ -67,6 +68,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
     AuthProvider,
     EndpointsProvider,
     MediaProvider,
+    TagProvider,
     MediaPlugin,
     File,
     AudioRecordProvider,
