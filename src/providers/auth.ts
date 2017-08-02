@@ -71,7 +71,6 @@ export class AuthProvider {
   }
 
   private handleResponse(response: string) {
-    console.log('handling: ' + response);
     let responseObj = JSON.parse(response);
     return this.storage.set('login_response', response)
       .then(() =>  this.authUser.next(this.jwtHelper.decodeToken(responseObj.token)))

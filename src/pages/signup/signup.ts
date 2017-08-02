@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, LoadingController, NavController, ToastController} from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, ToastController, AlertController} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth';
 import {trigger, state, style, transition, animate, keyframes} from '@angular/animations'
 
@@ -50,7 +50,8 @@ export class SignupPage {
   constructor(public readonly navCtrl: NavController,
               private readonly auth: AuthProvider,
               private readonly loadingCtrl: LoadingController,
-              private readonly toastCtrl: ToastController) {
+              private readonly toastCtrl: ToastController,
+              private readonly alertCtrl: AlertController) {
   }
 
   signup(){
@@ -65,12 +66,14 @@ export class SignupPage {
       this.handleError("Password does match with confirmation.")
     }
     else{
-      console.log(this.registerCredentials);
       this.auth
         .signup(this.registerCredentials)
         .finally(() => loading.dismiss())
         .subscribe(
-          () => {},
+          (resp) => {
+            console.log(resp);
+            this.doAlert(resp)
+          },
           err => this.handleError(err));
     }
   }
@@ -85,6 +88,22 @@ export class SignupPage {
     });
 
     toast.present();
+  }
+
+  doAlert(resp) {
+    let respObj = JSON.parse(resp);
+    let alert = this.alertCtrl.create({
+      title: 'Successfully registered!',
+      subTitle: 'Your account id:' + respObj._id + ' name: '+ respObj.email + ' has been created, you can log in.',
+      buttons: [        {
+        text: 'OK',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      },]
+    });
+
+    alert.present();
   }
 
 }
