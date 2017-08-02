@@ -12,8 +12,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointsProvider {
 
-  API_PATH: string = "http://192.168.3.50:3000";
-  // API_PATH: string = "http://192.168.0.200:3000";
+  // API_PATH: string = "http://192.168.3.50:3000";
+  API_PATH: string = "http://192.168.0.200:3000";
 
   getAuth(){
     return this.API_PATH + "/api/user/authenticate";
@@ -28,7 +28,10 @@ export class EndpointsProvider {
   }
 
   getMedias(){
-    return this.API_PATH + "/api/media"
+    return this.API_PATH + "/api/media";
   }
 
+  getMediasForUser(userId: string){
+    return this.API_PATH + "/api/user/" + userId + "/medias";
+  }
 }
