@@ -5,16 +5,21 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <app-header></app-header>
-
+  <ion-navbar>
+    <ion-title>New audio</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon color="light" name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 
-<ion-content padding>
-  <ion-grid id="recordGrid">
+<ion-content>
+  <ion-grid id="recordGrid" class="degrade">
     <ion-row>
-      <ion-col col-12>
+      <ion-col col-6>
         <button id="recBtn" *ngIf="recording()===false; else recordingComp;" (click)="record()" ion-button round icon-only>
           <ion-icon name="mic"></ion-icon>
         </button>
@@ -24,29 +29,59 @@
           </button>
         </ng-template>
       </ion-col>
+      <ion-col col-6>
+        <button block [ngClass]="recording() || playing() ? 'play_disabled controlBtn' : 'play_enabled controlBtn'" id="playBtn" (click)="play()" ion-button round icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button block [ngClass]="recording() || playing() ? 'play_disabled controlBtn' : 'play_enabled controlBtn'" id="playBtn1" (click)="play()" ion-button round icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button block [ngClass]="recording() || playing() ? 'play_disabled controlBtn' : 'play_enabled controlBtn'" id="playBtn2" (click)="play()" ion-button round icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+      </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col col-12 *ngIf="recording()===true; else playComp;"></ion-col>
-      <ng-template #playComp>
-        <ion-col col-12>
-          <button id="playBtn" *ngIf="playing()===false; else stopComp;" (click)="play()" ion-button round icon-only>
-            <ion-icon name="play"></ion-icon>
-          </button>
-        </ion-col>
-      </ng-template>
-      <ng-template #stopComp>
-        <ion-col col-6>
-          <button id="pauseBtn" (click)="pause()" ion-button icon-only>
-            <ion-icon name="pause"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col col-6>
-          <button id="stopBtn" (click)="stop()" ion-button icon-only>
-            <ion-icon name="square"></ion-icon>
-          </button>
-        </ion-col>
-      </ng-template>
+      <ion-col>
+        <ion-list class="media_form" inset>
+
+          <ion-item>
+            <ion-label fixed>File name</ion-label>
+            <ion-input type="text" value="" [(ngModel)]="mediaName"></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button full class="save_button" (click)="save()">Save</button>
+      </ion-col>
+    </ion-row>
+    <!--<ion-row>-->
+      <!--<ion-col col-12 *ngIf="recording()===true; else playComp;"></ion-col>-->
+      <!--<ng-template #playComp>-->
+        <!--<ion-col col-12>-->
+          <!--<button id="playBtn" *ngIf="playing()===false; else stopComp;" (click)="play()" ion-button round icon-only>-->
+            <!--<ion-icon name="play"></ion-icon>-->
+          <!--</button>-->
+        <!--</ion-col>-->
+      <!--</ng-template>-->
+      <!--<ng-template #stopComp>-->
+        <!--<ion-col col-6>-->
+          <!--<button id="pauseBtn" (click)="pause()" ion-button icon-only>-->
+            <!--<ion-icon name="pause"></ion-icon>-->
+          <!--</button>-->
+        <!--</ion-col>-->
+        <!--<ion-col col-6>-->
+          <!--<button id="stopBtn" (click)="stop()" ion-button icon-only>-->
+            <!--<ion-icon name="square"></ion-icon>-->
+          <!--</button>-->
+        <!--</ion-col>-->
+      <!--</ng-template>-->
+    <!--</ion-row>-->
   </ion-grid>
 
   <fabbutton></fabbutton>

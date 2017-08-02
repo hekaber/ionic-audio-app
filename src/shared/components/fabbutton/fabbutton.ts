@@ -17,6 +17,10 @@ export class FabbuttonComponent {
   }
 
   getRecordPage(){
-    this.navCtrl.push('RecordPage')
+    this.navCtrl.push('RecordPage');
+  }
+
+  getNewImagePage(){
+    this.navCtrl.push('NewImagePage');
   }
 }

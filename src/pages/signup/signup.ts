@@ -45,6 +45,7 @@ export class SignupPage {
   confirm: string = "";
   formState: any = "in";
   signupState: any = "in";
+  logoState: any = "in";
 
   constructor(public readonly navCtrl: NavController,
               private readonly auth: AuthProvider,

@@ -54,9 +54,10 @@ export class AuthProvider {
 
   signup(values: any): Observable<any> {
     return this.http.post(this.endpoints.getSignup(), values)
-      .map(response => response.text())
-      .map(jwt => this.handleJwtResponse(jwt))
-      .catch(err => Observable.throw(this.handleErrors(err)));
+      .map(response => {
+        console.log(response.text());
+        return response.text();
+      });
   }
 
   private handleErrors(err: any): any {

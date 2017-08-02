@@ -28,7 +28,7 @@ export class MediaProvider {
 
   }
 
-  getMedias(){
+  getMedias(limit: number){
     this.storage.get('jwt').then(jwt => {
       let tokenObj = JSON.parse(jwt);
       console.log('The token: ' + tokenObj.token);
@@ -40,7 +40,13 @@ export class MediaProvider {
         .subscribe(
           data => {
             // add new datas to store.medias
-            this._dataStore.medias = data;
+            this._dataStore.medias = data.filter((media, index)=>{
+
+              if(index<= limit){
+                return media
+              }
+
+            });
             // assign new state to observable Medias Subject
             this._medias.next(Object.assign({}, this._dataStore).medias);
           },

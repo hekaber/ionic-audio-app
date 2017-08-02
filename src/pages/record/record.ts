@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {AudioRecordProvider} from '../../providers/audiorecord';
 import {MediaObject} from "@ionic-native/media";
+import {AuthProvider} from "../../providers/auth";
 
 /**
  * Generated class for the RecordPage page.
@@ -17,6 +18,7 @@ import {MediaObject} from "@ionic-native/media";
 export class RecordPage {
 
   headerTitle: string = 'Record';
+  mediaName: string = '';
   private isRecording: boolean = false;
   private isPlaying: boolean = false;
   private isPaused: boolean = false;
@@ -25,7 +27,8 @@ export class RecordPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private audioRecordProvider: AudioRecordProvider) {
+              private readonly auth: AuthProvider,
+              private readonly audioRecordProvider: AudioRecordProvider) {
   }
 
   ionViewDidLoad() {
@@ -82,5 +85,17 @@ export class RecordPage {
 
   paused(){
     return this.isPaused;
+  }
+
+  save(){
+
+  }
+
+  saveFile(){
+
+  }
+
+  logout(){
+    this.auth.logout();
   }
 }

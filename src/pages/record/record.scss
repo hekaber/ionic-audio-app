@@ -1,54 +1,63 @@
-page-record ion-content > ion-grid {
+page-record  {
   //text-align: center;
-  height: 100%;
-  display: block;
-  vertical-align: middle;
+  ion-content > ion-grid{
+    height: 100%;
+    display: block;
+    vertical-align: middle;
+  }
+
+  .play_disabled {
+    opacity: 0.5;
+  }
+
+  .play_enabled {
+    opacity: 1;
+  }
+
+  #recordGrid {
+    height: 100%;
+    display: block;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  #recordGrid {
+    height: 100%;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+
+  #recordGrid ion-row {
+    height: 30%;
+  }
+
+  #recordGrid ion-col[col-6]{
+    flex: 0 0 50%;
+    max-width: 50%;
+    text-align: center;
+    padding: 10px 5px;
+  }
+
+  #recBtn {
+    height: 100%;
+    width: 100%;
+    background-color: #2ec95c;
+  }
+
+  #pauseBtn, #stopBtn {
+    width: 49%;
+  }
+  #recBtn ion-icon {
+    font-size: 10rem;
+  }
+
+  #stopRecBtn {
+    @extend #recBtn;
+    background-color: #e93a3a;
+  }
+
+  .controlBtn {
+    height: 25%;
+  }
 }
 
-
-#recordGrid {
-  height: 100%;
-  display: block;
-  vertical-align: middle;
-  text-align: center;
-}
-
-#recordGrid {
-  height: 100%;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-#recordGrid ion-row {
-  height: 30%;
-}
-
-#recordGrid ion-col[col-6]{
-  flex: 0 0 50%;
-  max-width: 50%;
-  text-align: center;
-  padding: 10px 5px;
-}
-
-#recBtn {
-  height: 100%;
-  width: 100%;
-  background-color: #2ec95c;
-}
-
-#pauseBtn, #stopBtn {
-  width: 49%;
-}
-#recBtn ion-icon {
-  font-size: 10rem;
-}
-
-#stopRecBtn {
-  @extend #recBtn;
-  background-color: #e93a3a;
-}
-
-#playBtn {
-  height: 25%;
-  width: 75%;
-}
