@@ -27,4 +27,8 @@ export class FabbuttonComponent {
   getCommunityPage(){
     this.navCtrl.push('CommunityPage');
   }
+
+  getTagManagerPage(){
+    this.navCtrl.push('TagManagerPage');
+  }
 }
