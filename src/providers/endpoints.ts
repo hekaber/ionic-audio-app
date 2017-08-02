@@ -34,4 +34,8 @@ export class EndpointsProvider {
   getMediasForUser(userId: string){
     return this.API_PATH + "/api/user/" + userId + "/medias";
   }
+
+  getTags(){
+    return this.API_PATH + "/api/tag";
+  }
 }
