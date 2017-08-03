@@ -38,10 +38,7 @@ export class TagProvider {
     let headers: Headers = new Headers({'Authorization': 'JWT ' + token, 'Content-Type': 'application/json'});
     let options: RequestOptions = new RequestOptions({headers: headers});
     return this.http.post(this.endpoints.getTags(), tagData, options)
-      .map(response => {
-              console.log(response);
-              return response.json()
-            });
+      .map(response => response.json());
   }
 
   getTags(){
