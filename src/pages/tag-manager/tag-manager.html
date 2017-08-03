@@ -17,23 +17,17 @@
   <div>
     <ion-row>
       <ion-col>
-        <ion-list class="media_form" inset>
-
-          <ion-item>
-            <ion-label fixed>Tag Name</ion-label>
-            <ion-input type="text" value="" [(ngModel)]="tag.name"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label fixed>Description</ion-label>
-            <ion-input type="text" value="" [(ngModel)]="tag.description"></ion-input>
-          </ion-item>
-        </ion-list>
+        <ion-item-group *ngFor="let group of (tags$ | async | groupBy: 'name')">
+          <ion-list-header>{{group.value}}</ion-list-header>
+          <!--<ion-item-divider color="light">A</ion-item-divider>-->
+          <ion-item *ngFor="let item of group.list"><h2>{{item.name}}</h2></ion-item>
+        </ion-item-group>
       </ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col>
-        <button ion-button full class="save_button" (click)="save()">Save</button>
+        <button ion-button full class="save_button" (click)="promptForm()">Ajouter</button>
       </ion-col>
     </ion-row>
   </div>
