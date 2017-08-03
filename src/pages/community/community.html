@@ -18,7 +18,7 @@
 <ion-content>
   <ion-list>
     <ion-item class="degrade" [navPush]="audioPage" *ngFor="let media of (medias$ | async); ">
-      <community-item [media_data]="media"></community-item>
+      <community-item (notify)="onPopularityNotify($event)" [media_data]="media"></community-item>
     </ion-item>
   </ion-list>
   <ion-fab right bottom>
