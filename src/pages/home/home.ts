@@ -24,13 +24,16 @@ export class HomePage {
               private readonly auth:AuthProvider,
               private mediaProvider: MediaProvider) {
     this.medias$ = mediaProvider.media$;
-    this.mediaProvider.getMediasForUser(10);
+
   }
 
   logout(){
     this.auth.logout();
   }
 
+  ionViewWillEnter(){
+    this.mediaProvider.getMediasForUser(10);
+  }
   // listMedias(){
   //   let timer:Observable<number> = Observable.timer(2000,1000);
   //   let mediaWatcher:Array<any> = [];
