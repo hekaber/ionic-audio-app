@@ -21,7 +21,7 @@ export class TagManagerPage {
 
   public tags$: Observable<Tag[]>;
   private _tags: Tag[];
-  private _subscrition: any;
+  private _subscription: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -31,10 +31,10 @@ export class TagManagerPage {
     this.tags$ = tagProvider.tag$;
     this.tagProvider.getTags();
 
-    this._subscrition = this.tags$.subscribe(tag => {
-      this._tags = tag;
-      console.log(this._tags);
-    });
+    // this._subscription = this.tags$.subscribe(tag => {
+    //   this._tags = tag;
+    //   console.log(this._tags);
+    // });
     console.log(this.tags$);
   }
 
@@ -45,7 +45,7 @@ export class TagManagerPage {
 
   ionViewDidLeave(){
     console.log('Left');
-    this._subscrition.unsubscribe();
+    if(this._subscription) this._subscription.unsubscribe();
   }
 
   promptForm() {
@@ -98,17 +98,14 @@ export class TagManagerPage {
     alert.present();
   }
 
-  doSuccess(){
-
-  }
-
   save(tagData) {
     console.log('Saving tag.');
     this.tagProvider.getTokenInfo().then(tokenResp => {
       let tokenObj = JSON.parse(tokenResp);
-      this.tagProvider.create(tagData, tokenObj.token)
+      this._subscription = this.tagProvider.create(tagData, tokenObj.token)
         .subscribe(
           resp => {
+            this.tagProvider.getTags();
             this.doAlert('Sauvegarde', 'Tag ' + resp.name +' sauvegarde avec succes.');
           },
           error => {
