@@ -1,10 +1,13 @@
+import {Observable} from "rxjs/Observable";
+
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AudioRecordProvider} from '../../providers/audiorecord';
 import {MediaObject} from "@ionic-native/media";
 import {AuthProvider} from "../../providers/auth";
 import {TagProvider} from "../../providers/tag";
-import {Observable} from "rxjs/Observable";
+import {MediaProvider} from "../../providers/media";
+
 import {Tag} from "../../models/tag";
 
 /**
@@ -21,7 +24,8 @@ import {Tag} from "../../models/tag";
 export class RecordPage {
 
   headerTitle: string = 'Record';
-  mediaName: string = '';
+  //defined media type to 0 -> means audio
+  media = {name: '', type: 0, uid: '', shared: false, uploaded: false, tags: [''], file: {}};
   private isRecording: boolean = false;
   private isPlaying: boolean = false;
   private isPaused: boolean = false;
@@ -35,7 +39,9 @@ export class RecordPage {
               public navParams: NavParams,
               private readonly auth: AuthProvider,
               private readonly audioRecordProvider: AudioRecordProvider,
-              private readonly tagProvider: TagProvider) {
+              private readonly tagProvider: TagProvider,
+              private readonly mediaProvider: MediaProvider,
+              private readonly alertCtrl: AlertController) {
 
     this.tags$ = tagProvider.tag$;
     this.tagProvider.getTags();
@@ -104,11 +110,39 @@ export class RecordPage {
   }
 
   save(){
-
+    this.mediaProvider.getTokenInfo().then(
+      tokenResp => {
+        let tokenObj = JSON.parse(tokenResp);
+        this.media.uid = tokenObj.userId;
+        this._subscription = this.mediaProvider.create(this.media, tokenObj.token)
+          .subscribe(
+            resp => {
+              this.doAlert('Sauvegarde', 'Tag ' + resp.name +' sauvegarde avec succes.');
+            },
+            error => {
+              this.doAlert("Erreur", "Une erreur s\'est produite durant la sauvegarde. " + error);
+            }
+          );
+      });
   }
 
   saveFile(){
 
+  }
+
+  doAlert(title: string, message: string) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: [        {
+        text: 'OK',
+        handler: () => {
+          this.navCtrl.pop();
+        }
+      },]
+    });
+
+    alert.present();
   }
 
   logout(){

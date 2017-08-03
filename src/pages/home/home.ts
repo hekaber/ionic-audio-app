@@ -50,23 +50,7 @@ export class HomePage {
   getTagManagerPage(){
     this.navCtrl.push('TagManagerPage');
   }
-  // listMedias(){
-  //   let timer:Observable<number> = Observable.timer(2000,1000);
-  //   let mediaWatcher:Array<any> = [];
-  //   this._timerSubscribe = timer.subscribe((t:number) => {
-  //     this.medias.forEach((medias:Media[])=>{
-  //       mediaWatcher = [...medias]
-  //     })
-  //     mediaWatcher.map((media:any)=>{
-  //       // if todo.deadline is smaller or equal to current time
-  //       // && if todo is NOT already expired
-  //       // run isDeadline(todo) to display alert
-  //       // if((todo.deadline <= Date.now()) && (todo.expire != true)){
-  //       //   return this.isDeadline(t, todo)
-  //       // }
-  //     })
-  //   });
-  // }
+
   // TODO: add the functions that will play music from ionic-audio native plugin
 
 }
