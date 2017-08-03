@@ -32,5 +32,15 @@ export class CommunityPage {
   logout(){
     this.auth.logout();
   }
+  getRecordPage(){
+    this.navCtrl.push('RecordPage');
+  }
 
+  getNewImagePage(){
+    this.navCtrl.push('NewImagePage');
+  }
+
+  getTagManagerPage(){
+    this.navCtrl.push('TagManagerPage');
+  }
 }

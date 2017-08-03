@@ -22,6 +22,11 @@
     </ion-item>
   </ion-list>
   <ion-fab right bottom>
-    <fabbutton></fabbutton>
+    <button ion-fab maxi><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button (click)="getRecordPage()" ion-fab><ion-icon name="recording"></ion-icon></button>
+      <button (click)="getNewImagePage()" ion-fab><ion-icon name="image"></ion-icon></button>
+      <button (click)="getTagManagerPage()" ion-fab><ion-icon name="pricetags"></ion-icon></button>
+    </ion-fab-list>
   </ion-fab>
 </ion-content>

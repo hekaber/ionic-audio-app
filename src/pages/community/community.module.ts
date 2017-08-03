@@ -15,7 +15,6 @@ import {CommunityItemComponentModule} from "../../shared/components/community-it
     AudioItemComponentModule,
     CommunityItemComponentModule,
     HeaderComponentModule,
-    FabbuttonComponentModule,
   ],
   exports: [
     CommunityPage
