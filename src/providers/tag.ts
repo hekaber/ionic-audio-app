@@ -2,24 +2,22 @@
  * Created by hkb on 02.08.17.
  */
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions, RequestMethod} from "@angular/http";
+import {Http, Headers, RequestOptions} from "@angular/http";
 import { Storage } from '@ionic/storage';
-import { JwtHelper, AuthHttp } from 'angular2-jwt';
 import { Observable, BehaviorSubject } from "rxjs";
 import 'rxjs/add/operator/map';
 
 import { EndpointsProvider } from './endpoints';
-import { Media } from "../models/media";
 import {Tag} from "../models/tag";
 
 
 @Injectable()
 export class TagProvider {
 
-  public tag$: Observable<Media[]>;
+  public tag$: Observable<Tag[]>;
   private _tags: BehaviorSubject<Tag[]>;
   private _dataStore: {  // This is where we will store our data in memory
-    tags: Media[]
+    tags: Tag[]
   };
 
   constructor(private readonly http: Http,
@@ -27,7 +25,7 @@ export class TagProvider {
               private readonly endpoints: EndpointsProvider) {
 
     this._dataStore = {tags: []};
-    this._tags = <BehaviorSubject<Media[]>>new BehaviorSubject([]);
+    this._tags = <BehaviorSubject<Tag[]>>new BehaviorSubject([]);
     this.tag$ = this._tags.asObservable();
 
   }
