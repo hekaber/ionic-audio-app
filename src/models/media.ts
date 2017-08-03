@@ -8,6 +8,8 @@ export class Media {
   public uploaded: boolean = false;
   public shared: boolean = false;
   public tags: Array<string> = [];
+  public likes: number = 0;
+  public dislikes: number = 0;
 
   constructor(name, type, uid, uploaded, shared, tags){
     this.name = name;

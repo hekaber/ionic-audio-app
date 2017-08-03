@@ -38,7 +38,7 @@ export class MediaProvider {
     return this.storage.get('login_response');
   }
 
-  create(mediaData, token): Observable<any>{
+  create(mediaData: any, token: string): Observable<any>{
     // Data format to post
     // {
     // name: {type: String, required: true},
@@ -57,7 +57,9 @@ export class MediaProvider {
       .map(response => response.json());
   }
 
-  getMedias(limit: number){
+  getMedias(limit: number, popularities: Array<any>){
+    console.log('In get medias');
+    console.log(popularities);
     this.storage.get('login_response').then(resp => {
       let tokenObj = JSON.parse(resp);
       // console.log('The token: ' + tokenObj.token);
@@ -70,18 +72,20 @@ export class MediaProvider {
           data => {
             // add new datas to store.medias
             this._dataStore.medias = data.filter((media, index)=>{
+              let popularity = popularities.find(pop => {
+                if(pop.mid === media._id) return pop;
+              });
+
+              if (popularity){
+                media.likes = popularity.likes.length;
+                media.dislikes = popularity.dislikes.length;
+              }
+              else {
+                media.likes = 0;
+                media.dislikes = 0;
+              }
+              console.log(media);
               return media
-              // if(index<= limit){
-              //   // this.http.get(this.endpoints.getPopularityForMedia(media._id), options)
-              //   //   .map(response => response.json())
-              //   //   .subscribe(
-              //   //     data => {
-              //   //       console.log(data);
-              //   //     }
-              //   //   );
-              //   console.log(media);
-              //   return media
-              // }
 
             });
             // assign new state to observable Medias Subject
@@ -92,10 +96,18 @@ export class MediaProvider {
     });
   }
 
+  postPopularity(mid: string, taste: string, token: string): Observable<any>{
+
+    console.log(mid);
+    let headers: Headers = new Headers({'Authorization': 'JWT ' + token, 'Content-type': 'application/json'});
+    let options: RequestOptions = new RequestOptions({headers: headers});
+    return this.http.post(this.endpoints.getPopularityForMedia(mid), {"taste": taste}, options)
+      .map(response => response.json());
+  }
+
   getPopularities(){
     this.storage.get('login_response').then(resp => {
       let tokenObj = JSON.parse(resp);
-      console.log('Token : ' + tokenObj.token);
       let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
       let options: RequestOptions = new RequestOptions({headers: headers});
       this.http.get(this.endpoints.getPopularities(), options)
@@ -104,7 +116,7 @@ export class MediaProvider {
           data => {
             // add new datas to store.medias
             this._dataStore.popularities = data.filter((popularity, index)=>{
-              console.log(popularity);
+              // console.log(popularity);
               return popularity;
             });
             // assign new state to observable Medias Subject

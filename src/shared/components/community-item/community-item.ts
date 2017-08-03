@@ -16,7 +16,7 @@ import { AudioProvider } from 'ionic-audio';
 export class CommunityItemComponent {
 
   @Input('media_data') media;
-  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  @Output() notify: EventEmitter<any> = new EventEmitter<any>();
   public currentDur: number = 0;
   public likes: string[];
   public dislikes: string[];
@@ -41,11 +41,11 @@ export class CommunityItemComponent {
   // }
 
   sendLike(){
-    this.notify.emit('like');
+    this.notify.emit({"taste": "like", "mid": this.media._id});
   }
 
   sendDislike(){
-    this.notify.emit('dislike');
+    this.notify.emit({"taste": "dislike", "mid": this.media._id});
   }
 
   // AUDIO MEDIA methods
