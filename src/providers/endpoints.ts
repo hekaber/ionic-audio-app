@@ -37,6 +37,10 @@ export class EndpointsProvider {
     return this.API_PATH + "/api/user/" + userId + "/medias";
   }
 
+  getPopularityForMedia(mediaId: string){
+    return this.API_PATH + "/api/media/" + mediaId + "/popularity";
+  }
+
   getTags(){
     return this.API_PATH + "/api/tag";
   }
