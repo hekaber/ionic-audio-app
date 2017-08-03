@@ -4,7 +4,7 @@ import {MediaObject, MediaPlugin} from "@ionic-native/media";
 import { AudioProvider } from 'ionic-audio';
 
 /**
- * Generated class for the AudioItemComponent component.
+ * Generated class for the CommunityItemComponent component.
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
