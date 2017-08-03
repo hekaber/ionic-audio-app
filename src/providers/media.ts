@@ -28,25 +28,27 @@ export class MediaProvider {
 
   }
 
-  create(mediaData){
+  getTokenInfo(): Promise<any>{
+    return this.storage.get('login_response');
+  }
+
+  create(mediaData, token): Observable<any>{
     // Data format to post
     // {
-    //   "name": body.name,
-    //   "type": body.type,
-    //   "uid": body.uid,
-    //   "uploaded": body.uploaded,
-    //   "shared": body.shared,
-    //   "tags": body.tags
+    // name: {type: String, required: true},
+    // type: {type: mediaType, required: true},
+    // uid: {type: String, required: true},
+    // updated: {type: Date, set: val => Date.now()},
+    // uploaded: {type: Boolean, default: false},
+    // shared: {type: Boolean, default: false},
+    // tags: [String],
+    //   file: {type: Object}
     // }
-    this.storage.get('login_response').then(resp => {
-      let tokenObj = JSON.parse(resp);
-      // console.log('The token: ' + tokenObj.token);
 
-      let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token});
-      let options: RequestOptions = new RequestOptions({headers: headers});
-      this.http.post(this.endpoints.getMedias(), options)
-        .map(response => response.json());
-    });
+    let headers: Headers = new Headers({'Authorization': 'JWT ' + token});
+    let options: RequestOptions = new RequestOptions({headers: headers});
+    return this.http.post(this.endpoints.getMedias(), mediaData, options)
+      .map(response => response.json());
   }
 
   getMedias(limit: number){
