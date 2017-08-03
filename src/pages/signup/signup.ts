@@ -93,8 +93,8 @@ export class SignupPage {
   doAlert(resp) {
     let respObj = JSON.parse(resp);
     let alert = this.alertCtrl.create({
-      title: 'Successfully registered!',
-      subTitle: 'Your account id:' + respObj._id + ' name: '+ respObj.email + ' has been created, you can log in.',
+      title: 'Enregistre avec succes!',
+      subTitle: 'Account id:' + respObj._id + ' name: '+ respObj.email + ' has been created, you can log in.',
       buttons: [        {
         text: 'OK',
         handler: () => {
