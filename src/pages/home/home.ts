@@ -34,6 +34,22 @@ export class HomePage {
   ionViewWillEnter(){
     this.mediaProvider.getMediasForUser(10);
   }
+
+  getRecordPage(){
+    this.navCtrl.push('RecordPage');
+  }
+
+  getNewImagePage(){
+    this.navCtrl.push('NewImagePage');
+  }
+
+  getCommunityPage(){
+    this.navCtrl.push('CommunityPage');
+  }
+
+  getTagManagerPage(){
+    this.navCtrl.push('TagManagerPage');
+  }
   // listMedias(){
   //   let timer:Observable<number> = Observable.timer(2000,1000);
   //   let mediaWatcher:Array<any> = [];

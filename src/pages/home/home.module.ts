@@ -6,7 +6,6 @@ import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
 import { AudioItemComponentModule } from "../../shared/components/audio-item/audio-item.module";
 import { HeaderComponentModule } from "../../shared/components/header/header.module";
-import {FabbuttonComponentModule} from "../../shared/components/fabbutton/fabbutton.module";
 
 
 @NgModule({
@@ -17,8 +16,6 @@ import {FabbuttonComponentModule} from "../../shared/components/fabbutton/fabbut
     IonicPageModule.forChild(HomePage),
     AudioItemComponentModule,
     HeaderComponentModule,
-    FabbuttonComponentModule,
-
   ],
   providers: [
   ],
