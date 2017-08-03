@@ -117,13 +117,4 @@ export class TagManagerPage {
         );
     });
   }
-
-  // private _saveCallback(data, success){
-  //   if(success){
-  //     this.doAlert('Sauvegarde', 'Tag ' + data.name +'sauvegarde ave succes.');
-  //   }
-  //   else {
-  //     this.doAlert("Erreur", "Une erreur s\'est produite durant la sauvegarde " + data);
-  //   }
-  // }
 }
