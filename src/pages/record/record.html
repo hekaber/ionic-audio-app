@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>New audio</ion-title>
+    <ion-title>Nouveau son</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="logout()">
         <ion-icon color="light" name="log-out"></ion-icon>
@@ -47,12 +47,15 @@
         <ion-list class="media_form" inset>
 
           <ion-item>
-            <ion-label fixed>File name</ion-label>
-            <ion-input type="text" value="" [(ngModel)]="mediaName"></ion-input>
+            <ion-label fixed>Nom</ion-label>
+            <ion-input type="text" value="" [(ngModel)]="media.name">
+            </ion-input>
           </ion-item>
           <ion-item>
             <ion-label fixed>Tags</ion-label>
-            <ion-input type="text" value="" [(ngModel)]="mediaTags"></ion-input>
+            <ion-select type="text" value="" [(ngModel)]="media.tags" multiple="true">
+              <ion-option *ngFor="let tag of tags$ | async" [value]="tag.name">{{tag.name}}</ion-option>
+            </ion-select>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -86,6 +89,7 @@
       <!--</ng-template>-->
     <!--</ion-row>-->
   </ion-grid>
-
-  <fabbutton></fabbutton>
+  <ion-fab right bottom>
+    <fabbutton></fabbutton>
+  </ion-fab>
 </ion-content>
