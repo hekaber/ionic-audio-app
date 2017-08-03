@@ -76,7 +76,7 @@ export class TagManagerPage {
               this.save(data);
             }
             else {
-              this.doAlert('Veuillez definir un nom pour ce tag.');
+              this.doAlert('Attention','Veuillez definir un nom pour ce tag.');
               return false;
             }
             console.log(data);
@@ -88,9 +88,9 @@ export class TagManagerPage {
     alert.present();
   }
 
-  doAlert(message: string) {
+  doAlert(title: string, message: string) {
     let alert = this.alertCtrl.create({
-      title: 'Attention!',
+      title: title,
       subTitle: message,
       buttons: ['OK']
     });
@@ -98,9 +98,32 @@ export class TagManagerPage {
     alert.present();
   }
 
-  save(tagData){
-    console.log('Saving tag.');
-    this.tagProvider.create(tagData);
+  doSuccess(){
+
   }
 
+  save(tagData) {
+    console.log('Saving tag.');
+    this.tagProvider.getTokenInfo().then(tokenResp => {
+      let tokenObj = JSON.parse(tokenResp);
+      this.tagProvider.create(tagData, tokenObj.token)
+        .subscribe(
+          resp => {
+            this.doAlert('Sauvegarde', 'Tag ' + resp.name +' sauvegarde avec succes.');
+          },
+          error => {
+            this.doAlert("Erreur", "Une erreur s\'est produite durant la sauvegarde. " + error);
+          }
+        );
+    });
+  }
+
+  // private _saveCallback(data, success){
+  //   if(success){
+  //     this.doAlert('Sauvegarde', 'Tag ' + data.name +'sauvegarde ave succes.');
+  //   }
+  //   else {
+  //     this.doAlert("Erreur", "Une erreur s\'est produite durant la sauvegarde " + data);
+  //   }
+  // }
 }

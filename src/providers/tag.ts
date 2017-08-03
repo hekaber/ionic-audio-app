@@ -30,31 +30,44 @@ export class TagProvider {
 
   }
 
-  create(tagData){
-    // Data format to post
-    // {name: tagName}
-    console.log(tagData);
-    this.storage.get('login_response').then(resp => {
-      let tokenObj = JSON.parse(resp);
-      console.log('Token : ' + tokenObj.token);
-      let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token, 'Content-Type': 'application/json'});
-      let options: RequestOptions = new RequestOptions({headers: headers});
-      console.log(options);
-      this.http.post(this.endpoints.getTags(), tagData, options)
-        .map(response => {
-          console.log(response);
-          return response.json()
-        })
-        .subscribe(
-          data => {
-            console.log(data);
-          },
-          error => {
-            console.log(error);
-          }
-        );
-    });
+  getTokenInfo(): Promise<any>{
+    return this.storage.get('login_response');
   }
+
+  create(tagData, token): Observable<any>{
+    let headers: Headers = new Headers({'Authorization': 'JWT ' + token, 'Content-Type': 'application/json'});
+    let options: RequestOptions = new RequestOptions({headers: headers});
+    return this.http.post(this.endpoints.getTags(), tagData, options)
+      .map(response => {
+              console.log(response);
+              return response.json()
+            });
+  }
+  // create(tagData){
+  //   // Data format to post
+  //   // {name: tagName}
+  //   console.log(tagData);
+  //   this.storage.get('login_response').then(resp => {
+  //     let tokenObj = JSON.parse(resp);
+  //     console.log('Token : ' + tokenObj.token);
+  //     let headers: Headers = new Headers({'Authorization': 'JWT ' + tokenObj.token, 'Content-Type': 'application/json'});
+  //     let options: RequestOptions = new RequestOptions({headers: headers});
+  //     console.log(options);
+  //     this.http.post(this.endpoints.getTags(), tagData, options)
+  //       .map(response => {
+  //         console.log(response);
+  //         return response.json()
+  //       })
+  //       .subscribe(
+  //         data => {
+  //           console.log(data);
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         }
+  //       );
+  //   });
+  // }
 
   getTags(){
     this.storage.get('login_response').then(resp => {

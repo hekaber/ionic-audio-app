@@ -18,7 +18,7 @@
 <ion-content>
   <ion-list>
     <ion-item class="degrade" [navPush]="audioPage" *ngFor="let media of (medias$ | async); ">
-      <audio-item [media_data]="media"></audio-item>
+      <community-item [media_data]="media"></community-item>
     </ion-item>
   </ion-list>
   <fabbutton></fabbutton>

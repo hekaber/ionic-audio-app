@@ -29,6 +29,7 @@ export class RecordPage {
   private file: MediaObject;
 
   public tags$: Observable<Tag[]>;
+  private _subscription: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -44,6 +45,11 @@ export class RecordPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecordPage');
   }
+
+  // ionViewDidLeave(){
+  //   console.log('Left');
+  //   this.subscrition.unsubscribe();
+  // }
 
   record(){
     this.isRecording = true;

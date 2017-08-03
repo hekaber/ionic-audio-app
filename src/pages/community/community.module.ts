@@ -4,6 +4,7 @@ import { CommunityPage } from './community';
 import {FabbuttonComponentModule} from "../../shared/components/fabbutton/fabbutton.module";
 import {HeaderComponentModule} from "../../shared/components/header/header.module";
 import {AudioItemComponentModule} from "../../shared/components/audio-item/audio-item.module";
+import {CommunityItemComponentModule} from "../../shared/components/community-item/community-item.module";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {AudioItemComponentModule} from "../../shared/components/audio-item/audio
   imports: [
     IonicPageModule.forChild(CommunityPage),
     AudioItemComponentModule,
+    CommunityItemComponentModule,
     HeaderComponentModule,
     FabbuttonComponentModule,
   ],

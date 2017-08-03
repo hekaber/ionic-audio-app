@@ -1,0 +1,52 @@
+<ion-grid>
+  <ion-row>
+    <ion-col col-1>
+      <ion-avatar item-start>
+        <img src="assets/img/onde-sonore.jpg" height="100" width="100"/>
+      </ion-avatar>
+    </ion-col>
+    <ion-col col-2>
+      <button *ngIf="playing()===false; else playingComp;" (click)="play()" ion-button icon-only color="light" clear>
+        <ion-icon name="play"></ion-icon>
+      </button>
+      <ng-template #playingComp>
+        <button (click)="stop()" ion-button icon-only color="light" clear>
+          <ion-icon name="square"></ion-icon>
+        </button>
+      </ng-template>
+    </ion-col>
+    <ion-col col-6>
+      <div class="audio-info">
+        <h1>{{ media.name }}</h1>
+        <p><span *ngFor="let tag of media.tags">{{ tag }} </span></p>
+      </div>
+    </ion-col>
+    <ion-col col-1>
+      <div class="audio-info" *ngIf="playing()===false; else currentDuration;">
+        <p>{{ totalDuration()}}</p>
+      </div>
+      <ng-template #currentDuration>
+        <p>21</p>
+      </ng-template>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button icon-only color="light" clear>
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button small icon-start>
+        <ion-icon name="thumbs-up"></ion-icon>
+        Like
+      </button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button small icon-start>
+        <ion-icon name="thumbs-down"></ion-icon>
+        Dislike
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
