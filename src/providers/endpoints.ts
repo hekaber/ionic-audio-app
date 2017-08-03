@@ -3,6 +3,7 @@
  */
 import { Injectable } from '@angular/core';
 
+declare var process: any;
 /*
  Generated class for the EndpointsProvider provider.
 
@@ -12,7 +13,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class EndpointsProvider {
 
-  // API_PATH: string = "http://192.168.3.50:3000";
+
+  // API_PATH: string = process.env.IONIC_ENV ? "https://damp-peak-74760.herokuapp.com" : "http://192.168.3.50:3000";
   API_PATH: string = "http://192.168.0.200:3000";
 
   getAuth(){
