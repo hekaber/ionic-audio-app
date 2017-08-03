@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {AudioRecordProvider} from '../../../providers/audiorecord';
 import {MediaObject, MediaPlugin} from "@ionic-native/media";
 import { AudioProvider } from 'ionic-audio';
@@ -16,6 +16,7 @@ import { AudioProvider } from 'ionic-audio';
 export class CommunityItemComponent {
 
   @Input('media_data') media;
+  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
   public currentDur: number = 0;
   public likes: string[];
   public dislikes: string[];
@@ -39,6 +40,15 @@ export class CommunityItemComponent {
   //   this.fileName = 'totofileLoaded.m4a';
   // }
 
+  sendLike(){
+    this.notify.emit('like');
+  }
+
+  sendDislike(){
+    this.notify.emit('dislike');
+  }
+
+  // AUDIO MEDIA methods
   play(){
     this._isPlaying = true;
     this._file.play();
