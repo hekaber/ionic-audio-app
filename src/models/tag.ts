@@ -3,8 +3,10 @@
  */
 export class Tag {
   public name: string = "";
+  public description: string = "";
 
-  constructor(name){
+  constructor(name, description){
     this.name = name;
+    this.description = description;
   }
 }
