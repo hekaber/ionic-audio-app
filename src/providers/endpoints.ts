@@ -14,8 +14,8 @@ declare var process: any;
 export class EndpointsProvider {
 
 
-  // API_PATH: string = process.env.IONIC_ENV ? "https://damp-peak-74760.herokuapp.com" : "http://192.168.3.50:3000";
-  API_PATH: string = "http://192.168.0.200:3000";
+  API_PATH: string = process.env.IONIC_ENV ? "https://damp-peak-74760.herokuapp.com" : "http://192.168.3.50:3000";
+  // API_PATH: string = "http://192.168.0.200:3000";
 
   getAuth(){
     return this.API_PATH + "/api/user/authenticate";
